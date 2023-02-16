@@ -1,5 +1,5 @@
 """Implements Linked List Data Structure."""
-from typing import Any
+from typing import Any, Optional
 
 
 class Node:
@@ -11,8 +11,8 @@ class Node:
         Args:
             value (Any): The value of the node.
         """
-        self.value = value
-        self.next = None
+        self.value: Any = value
+        self.next: Optional[Node] = None
 
 
 class LinkedList:
@@ -25,9 +25,9 @@ class LinkedList:
             value (Any): The initial value in the linked list.
         """
         node = Node(value=value)
-        self.head = node
-        self.tail = node
-        self.length = 1
+        self.head: Optional[Node] = node
+        self.tail: Optional[Node] = node
+        self.length: int = 1
 
     def print_list(self) -> None:
         """Print the linked list to stdout."""
@@ -36,16 +36,55 @@ class LinkedList:
             print(temp.value)
             temp = temp.next
 
+    def append(self, value: Any) -> bool:
+        """Append a value to the end of the linked list.
+
+        Args:
+            value (Any): The value to append.
+
+        Returns:
+            bool: True if the value was appended, False otherwise.
+        """
+        new_node = Node(value=value)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+        self.length += 1
+        return True
+
+    def pop(self) -> Optional[Node]:
+        """Remove and return the last node from the linked list.
+
+        Returns:
+            Optional[Node]: The last node, or None if the list is empty.
+        """
+        temp = self.head
+        pre = self.head
+        if self.length == 0:
+            return None
+        while temp.next:
+            pre = temp
+            temp = temp.next
+        self.tail = pre
+        self.tail.next = None
+        self.length -= 1
+        if self.length == 0:
+            self.head = None
+            self.tail = None
+        return temp
+
 
 def main():
     """Test the LinkedList class."""
-    my_linked_list = LinkedList(4)
+    my_linked_list = LinkedList(1)
+    my_linked_list.append(2)
 
-    print("Head:", my_linked_list.head.value)
-    print("Tail:", my_linked_list.tail.value)
-    print("Length:", my_linked_list.length)
-
-    my_linked_list.print_list()
+    print(my_linked_list.pop())
+    print(my_linked_list.pop())
+    print(my_linked_list.pop())
 
 
 if __name__ == "__main__":
