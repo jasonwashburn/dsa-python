@@ -1,0 +1,11 @@
+flake8
+flake8-bandit
+flake8-docstrings
+flake8-bugbear
+pep8-naming
+black
+isort
+pytest
+pytest-cov
+pytest-rich
+pytest-xdist
