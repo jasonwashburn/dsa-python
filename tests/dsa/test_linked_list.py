@@ -99,3 +99,39 @@ def test_prepend_on_empty_list() -> None:
     assert victim.head.value == 3
     assert victim.tail.value == 3
     assert victim.length == 1
+
+
+def test_pop_first_node() -> None:
+    """Test that pop() removes and returns the first node from the list."""
+    victim = LinkedList(value=4)
+    victim.append(value=5)
+    victim.append(value=6)
+    assert victim.pop_first().value == 4
+    assert victim.head.value == 5
+    assert victim.length == 2
+
+
+def test_pop_first_on_empty_list_returns_none() -> None:
+    """Test that pop_first() returns None if the list is empty."""
+    victim = LinkedList(value=4)
+    victim.head = None
+    victim.tail = None
+    victim.length = 0
+    assert victim.pop_first() is None
+
+
+def test_pop_first_on_list_with_one_node() -> None:
+    """Test that pop_first() works on a list with one node."""
+    victim = LinkedList(value=4)
+    assert victim.pop_first().value == 4
+    assert victim.head is None
+    assert victim.tail is None
+    assert victim.length == 0
+
+
+def test_pop_first_returned_node_is_not_linked_to_other_nodes() -> None:
+    """Test that pop_first() returns a node that is not linked to other nodes."""
+    victim = LinkedList(value=4)
+    victim.append(value=5)
+    victim.append(value=6)
+    assert victim.pop_first().next is None
