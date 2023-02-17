@@ -113,6 +113,39 @@ class LinkedList:
             self.tail = None
         return temp
 
+    def get(self, index: int) -> Optional[Node]:
+        """Get the node at the given index.
+
+        Args:
+            index (int): The index of the node to get.
+
+        Returns:
+            Optional[Node]: The node at the given index, or None if the index
+                is out of bounds.
+        """
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
+
+    def set_value(self, index: int, value: Any) -> bool:
+        """Set the value of the node at the given index.
+
+        Args:
+            index (int): The index of the node to set.
+            value (Any): The new value of the node.
+
+        Returns:
+            bool: True if the value was set, False otherwise.
+        """
+        node = self.get(index)
+        if node is None:
+            return False
+        node.value = value
+        return True
+
 
 def main():
     """Test the LinkedList class."""

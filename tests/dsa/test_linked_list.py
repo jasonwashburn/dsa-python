@@ -135,3 +135,42 @@ def test_pop_first_returned_node_is_not_linked_to_other_nodes() -> None:
     victim.append(value=5)
     victim.append(value=6)
     assert victim.pop_first().next is None
+
+
+def test_get_node_at_index() -> None:
+    """Test that get() returns the node at the given index."""
+    victim = LinkedList(value=4)
+    victim.append(value=5)
+    victim.append(value=6)
+    assert victim.get(0).value == 4
+    assert victim.get(1).value == 5
+    assert victim.get(2).value == 6
+
+
+def test_get_on_empty_list_returns_none() -> None:
+    """Test that get() returns None if the list is empty."""
+    victim = LinkedList(value=4)
+    victim.head = None
+    victim.tail = None
+    victim.length = 0
+    assert victim.get(0) is None
+
+
+def test_set_value_sets_value_of_node_at_index() -> None:
+    """Test that set_value() sets the value of the node at the given index."""
+    victim = LinkedList(value=4)
+    victim.append(value=5)
+    victim.append(value=6)
+    victim.set_value(1, 7)
+    assert victim.get(0).value == 4
+    assert victim.get(1).value == 7
+    assert victim.get(2).value == 6
+
+
+def test_set_value_on_empty_list_returns_none() -> None:
+    """Test that set_value() returns None if the list is empty."""
+    victim = LinkedList(value=4)
+    victim.head = None
+    victim.tail = None
+    victim.length = 0
+    assert victim.set_value(0, 7) is None
