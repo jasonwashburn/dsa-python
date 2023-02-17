@@ -78,3 +78,24 @@ def test_pop_on_list_with_one_node() -> None:
     assert victim.head is None
     assert victim.tail is None
     assert victim.length == 0
+
+
+def test_prepend_adds_node_to_front_of_list() -> None:
+    """Test that prepend() adds a node to the front of the list."""
+    victim = LinkedList(value=4)
+    victim.prepend(value=3)
+    assert victim.head.value == 3
+    assert victim.tail.value == 4
+    assert victim.length == 2
+
+
+def test_prepend_on_empty_list() -> None:
+    """Test that prepend() works on an empty list."""
+    victim = LinkedList(value=4)
+    victim.head = None
+    victim.tail = None
+    victim.length = 0
+    victim.prepend(value=3)
+    assert victim.head.value == 3
+    assert victim.tail.value == 3
+    assert victim.length == 1

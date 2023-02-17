@@ -76,6 +76,26 @@ class LinkedList:
             self.tail = None
         return temp
 
+    def prepend(self, value: Any) -> bool:
+        """Prepend a value to the beginning of the linked list.
+
+        Args:
+            value (Any): The value to prepend.
+
+        Returns:
+            bool: True if the value was prepended, False otherwise.
+        """
+        new_node = Node(value=value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+
+        self.length += 1
+        return True
+
 
 def main():
     """Test the LinkedList class."""
