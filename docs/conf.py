@@ -1,13 +1,15 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+"""Configuration file for Sphinx documentation builder.
 
-# -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+Configuration file for the Sphinx documentation builder.
+For the full list of built-in configuration values, see the documentation:
+https://www.sphinx-doc.org/en/master/usage/configuration.html
+
+-- Project information -----------------------------------------------------
+https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+"""
 
 project = "DSA in Python"
-copyright = "2023, Jason Washburn"
+copyright = "2023, Jason Washburn"  # noqa: A001
 author = "Jason Washburn"
 release = "0.0.1"
 

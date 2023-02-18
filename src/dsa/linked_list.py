@@ -1,5 +1,5 @@
 """Implements Linked List Data Structure."""
-from typing import Any, Optional
+from typing import Any
 
 
 class Node:
@@ -12,7 +12,7 @@ class Node:
             value (Any): The value of the node.
         """
         self.value: Any = value
-        self.next: Optional[Node] = None
+        self.next: Node | None = None
 
 
 class LinkedList:
@@ -25,15 +25,15 @@ class LinkedList:
             value (Any): The initial value in the linked list.
         """
         node = Node(value=value)
-        self.head: Optional[Node] = node
-        self.tail: Optional[Node] = node
+        self.head: Node | None = node
+        self.tail: Node | None = node
         self.length: int = 1
 
     def print_list(self) -> None:
         """Print the linked list to stdout."""
         temp = self.head
         while temp is not None:
-            print(temp.value)
+            print(temp.value)  # noqa: T201
             temp = temp.next
 
     def append(self, value: Any) -> bool:
@@ -55,11 +55,11 @@ class LinkedList:
         self.length += 1
         return True
 
-    def pop(self) -> Optional[Node]:
+    def pop(self) -> Node | None:
         """Remove and return the last node from the linked list.
 
         Returns:
-            Optional[Node]: The last node, or None if the list is empty.
+            Node | None: The last node, or None if the list is empty.
         """
         temp = self.head
         pre = self.head
@@ -96,11 +96,11 @@ class LinkedList:
         self.length += 1
         return True
 
-    def pop_first(self) -> Optional[Node]:
+    def pop_first(self) -> Node | None:
         """Remove and return the first node from the linked list.
 
         Returns:
-            Optional[Node]: The first node, or None if the list is empty.
+            Node | None: The first node, or None if the list is empty.
         """
         if self.length == 0:
             return None
@@ -113,14 +113,14 @@ class LinkedList:
             self.tail = None
         return temp
 
-    def get(self, index: int) -> Optional[Node]:
+    def get(self, index: int) -> Node | None:
         """Get the node at the given index.
 
         Args:
             index (int): The index of the node to get.
 
         Returns:
-            Optional[Node]: The node at the given index, or None if the index
+            Node | None: The node at the given index, or None if the index
                 is out of bounds.
         """
         if index < 0 or index >= self.length:
@@ -148,13 +148,8 @@ class LinkedList:
 
 
 def main():
-    """Test the LinkedList class."""
-    my_linked_list = LinkedList(1)
-    my_linked_list.append(2)
-
-    print(my_linked_list.pop())
-    print(my_linked_list.pop())
-    print(my_linked_list.pop())
+    """Run Main function."""
+    ...
 
 
 if __name__ == "__main__":
