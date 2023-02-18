@@ -173,4 +173,4 @@ def test_set_value_on_empty_list_returns_none() -> None:
     victim.head = None
     victim.tail = None
     victim.length = 0
-    assert victim.set_value(0, 7) is None
+    assert victim.set_value(0, 7) is False
