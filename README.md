@@ -3,8 +3,9 @@
 Implementing some common data structures and algorithms in python for fun using TDD
 
 ## Data Structures
-- Linked List (In Work)
-- Coming Soon...
+- [x] Linked List
+- [ ] Doubly Linked List (In Work)
+- [ ] More...
 
 ## Algorithms
 - Coming soon...

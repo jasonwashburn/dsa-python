@@ -207,3 +207,76 @@ def test_insert_on_invalid_index_returns_false(index: int) -> None:
     """Test that insert() returns False if the index is invalid."""
     victim = LinkedList(value=4)
     assert victim.insert(index, 7) is False
+
+
+def test_remove() -> None:
+    """Test that remove() removes and returns the node at the given index."""
+    victim = LinkedList(value=4)
+    victim.append(value=5)
+    victim.append(value=6)
+    assert victim.remove(1).value == 5
+    assert victim.get(0).value == 4
+    assert victim.get(1).value == 6
+    assert victim.length == 2
+
+
+def test_remove_first_item() -> None:
+    """Test that remove() removes and returns the first item in the list."""
+    victim = LinkedList(value=4)
+    victim.append(value=5)
+    victim.append(value=6)
+    assert victim.remove(0).value == 4
+    assert victim.get(0).value == 5
+    assert victim.get(1).value == 6
+    assert victim.length == 2
+
+
+def test_remove_last_item() -> None:
+    """Test that remove() removes and returns the last item in the list."""
+    victim = LinkedList(value=4)
+    victim.append(value=5)
+    victim.append(value=6)
+    assert victim.remove(2).value == 6
+    assert victim.get(0).value == 4
+    assert victim.get(1).value == 5
+    assert victim.length == 2
+
+
+def test_remove_on_empty_list_returns_false() -> None:
+    """Test that remove() returns False if the list is empty."""
+    victim = LinkedList(value=4)
+    victim.head = None
+    victim.tail = None
+    victim.length = 0
+    assert victim.remove(0) is False
+
+
+def test_reverse() -> None:
+    """Test that reverse() reverses the list."""
+    victim = LinkedList(value=4)
+    victim.append(value=5)
+    victim.append(value=6)
+    victim.reverse()
+    assert victim.get(0).value == 6
+    assert victim.get(1).value == 5
+    assert victim.get(2).value == 4
+
+
+def test_reverse_empty_list() -> None:
+    """Test that reverse() works on an empty list."""
+    victim = LinkedList(value=4)
+    victim.head = None
+    victim.tail = None
+    victim.length = 0
+    victim.reverse()
+    assert victim.head is None
+    assert victim.tail is None
+    assert victim.length == 0
+
+
+def test_reverse_one_item_list() -> LinkedList:
+    """Test that reverse() works on a list with one item."""
+    victim = LinkedList(value=4)
+    victim.reverse()
+    assert victim.get(0).value == 4
+    assert victim.length == 1

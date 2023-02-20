@@ -1,5 +1,5 @@
 """Implements Linked List Data Structure."""
-from typing import Any
+from typing import Any, Self
 
 
 class Node:
@@ -169,6 +169,48 @@ class LinkedList:
         leader.next = new_node
         self.length += 1
         return True
+
+    def remove(self, index: int) -> bool:
+        """Remove the node at the given index.
+
+        Args:
+            index (int): The index of the node to remove.
+
+        Returns:
+            bool: True if the node was removed, False otherwise.
+        """
+        if index < 0 or index >= self.length:
+            return False
+        if index == 0:
+            return self.pop_first()
+        if index == self.length - 1:
+            return self.pop()
+        temp = self.get(index)
+        leader = self.get(index - 1)
+        follower = self.get(index + 1)
+        leader.next = follower
+        self.length -= 1
+        return temp
+
+    def reverse(self) -> Self:
+        """Reverse the linked list.
+
+        Returns:
+            Self: The reversed linked list.
+        """
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+
+        prev = None
+        temp = self.tail
+        for _ in range(self.length):
+            after = temp.next
+            temp.next = prev
+            prev = temp
+            temp = after
+
+        return self
 
 
 def main():
