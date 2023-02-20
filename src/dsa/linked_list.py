@@ -146,6 +146,30 @@ class LinkedList:
         node.value = value
         return True
 
+    def insert(self, index: int, value: Any) -> bool:
+        """Insert a node at the given index.
+
+        Args:
+            index (int): The index to insert the node at.
+            value (Any): The value of the node to insert.
+
+        Returns:
+            bool: True if the node was inserted, False otherwise.
+        """
+        if index < 0 or index > self.length:
+            return False
+        if index == 0:
+            return self.prepend(value=value)
+        if index == self.length:
+            return self.append(value=value)
+        leader = self.get(index - 1)
+        new_node = Node(value=value)
+        follower = leader.next
+        new_node.next = follower
+        leader.next = new_node
+        self.length += 1
+        return True
+
 
 def main():
     """Run Main function."""

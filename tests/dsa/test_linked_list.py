@@ -2,6 +2,8 @@
 from io import StringIO
 from unittest.mock import patch
 
+import pytest
+
 from dsa.linked_list import LinkedList, Node
 
 
@@ -174,3 +176,34 @@ def test_set_value_on_empty_list_returns_none() -> None:
     victim.tail = None
     victim.length = 0
     assert victim.set_value(0, 7) is False
+
+
+def test_insert() -> None:
+    """Test that insert() inserts a node at the given index."""
+    victim = LinkedList(value=4)
+    victim.append(value=5)
+    victim.append(value=6)
+    victim.insert(1, 7)
+    assert victim.get(0).value == 4
+    assert victim.get(1).value == 7
+    assert victim.get(2).value == 5
+    assert victim.get(3).value == 6
+    assert victim.length == 4
+
+
+def test_insert_on_empty_list() -> None:
+    """Test that insert() works on an empty list."""
+    victim = LinkedList(value=4)
+    victim.head = None
+    victim.tail = None
+    victim.length = 0
+    victim.insert(0, 7)
+    assert victim.get(0).value == 7
+    assert victim.length == 1
+
+
+@pytest.mark.parametrize("index", [-1, 3])
+def test_insert_on_invalid_index_returns_false(index: int) -> None:
+    """Test that insert() returns False if the index is invalid."""
+    victim = LinkedList(value=4)
+    assert victim.insert(index, 7) is False
