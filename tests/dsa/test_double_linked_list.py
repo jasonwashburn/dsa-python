@@ -86,3 +86,24 @@ def test_pop_on_single_node_list() -> None:
     assert victim.head is None
     assert victim.tail is None
     assert victim.length == 0
+
+
+def test_prepend() -> None:
+    """Test that prepend() adds a node to the beginning of the list."""
+    victim = DoublyLinkedList(value=4)
+    victim.prepend(5)
+    assert victim.head.value == 5
+    assert victim.tail.value == 4
+    assert victim.length == 2
+
+
+def test_prepend_on_empty_list() -> None:
+    """Test that prepend() works on empty list."""
+    victim = DoublyLinkedList(value=4)
+    victim.head = None
+    victim.tail = None
+    victim.length = 0
+    victim.prepend(4)
+    assert victim.head.value == 4
+    assert victim.tail.value == 4
+    assert victim.length == 1

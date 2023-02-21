@@ -75,3 +75,20 @@ class DoublyLinkedList:
             temp.prev = None
         self.length -= 1
         return temp
+
+    def prepend(self, value: Any) -> bool:
+        """Prepend a node to the beginning of the list.
+
+        Args:
+            value (Any): The value of the node to prepend.
+
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        new_node = Node(value)
+        new_node.next = self.head
+        if self.length == 0:
+            self.tail = new_node
+        self.head = new_node
+        self.length += 1
+        return True
