@@ -29,6 +29,10 @@ class LinkedList:
         self.tail: Node | None = node
         self.length: int = 1
 
+    def __len__(self) -> int:
+        """Return the length of the linked list."""
+        return self.length
+
     def print_list(self) -> None:
         """Print the linked list to stdout."""
         temp = self.head

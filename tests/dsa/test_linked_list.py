@@ -280,3 +280,26 @@ def test_reverse_one_item_list() -> LinkedList:
     victim.reverse()
     assert victim.get(0).value == 4
     assert victim.length == 1
+
+
+def test_linked_list_haneles_len_for_empty_list() -> None:
+    """Test that len() works on an empty list."""
+    victim = LinkedList(value=4)
+    victim.head = None
+    victim.tail = None
+    victim.length = 0
+    assert len(victim) == 0
+
+
+def test_linked_list_haneles_len_for_one_item_list() -> None:
+    """Test that len() works on a list with one item."""
+    victim = LinkedList(value=4)
+    assert len(victim) == 1
+
+
+def test_linked_list_handles_len() -> None:
+    """Test that len() works on a list with multiple items."""
+    victim = LinkedList(value=4)
+    victim.append(value=5)
+    victim.append(value=6)
+    assert len(victim) == 3
