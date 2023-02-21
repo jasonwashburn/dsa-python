@@ -12,9 +12,9 @@ class Node:
         Args:
             value (Any): The value of the node.
         """
-        self.value = value
-        self.next = None
-        self.prev = None
+        self.value: Any = value
+        self.next: Node | None = None
+        self.prev: Node | None = None
 
 
 class DoublyLinkedList:
@@ -27,9 +27,9 @@ class DoublyLinkedList:
             value (Any): The value of the head node.
         """
         new_node = Node(value)
-        self.head = new_node
-        self.tail = new_node
-        self.length = 1
+        self.head: Node | None = new_node
+        self.tail: Node | None = new_node
+        self.length: int = 1
 
     def print_list(self) -> None:
         """Print the list to stdout."""
@@ -37,3 +37,41 @@ class DoublyLinkedList:
         while temp is not None:
             print(temp.value)  # noqa: T201
             temp = temp.next
+
+    def append(self, value: Any) -> bool:
+        """Append a node to the end of the list.
+
+        Args:
+            value (Any): The value of the node to append.
+        """
+        new_node = Node(value)
+        if self.length == 0 or self.head is None or self.tail is None:
+            self.head = new_node
+            self.tail = new_node
+            self.length += 1
+            return True
+        new_node.prev = self.tail
+        self.tail.next = new_node
+        self.tail = new_node
+        self.length += 1
+        return True
+
+    def pop(self) -> Node | None:
+        """Remove the last node in the list.
+
+        Returns:
+            Node | None: The last node in the list.
+        """
+        if self.length == 0 or self.head is None or self.tail is None:
+            return None
+
+        temp = self.tail
+        if self.length == 1 or self.tail.prev is None:
+            self.head = None
+            self.tail = None
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+            temp.prev = None
+        self.length -= 1
+        return temp
