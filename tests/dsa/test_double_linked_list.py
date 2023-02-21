@@ -107,3 +107,30 @@ def test_prepend_on_empty_list() -> None:
     assert victim.head.value == 4
     assert victim.tail.value == 4
     assert victim.length == 1
+
+
+def test_pop_first() -> None:
+    """Test that pop_first() returns the first node in the list."""
+    victim = DoublyLinkedList(value=4)
+    victim.append(5)
+    assert victim.pop_first().value == 4
+    assert victim.length == 1
+    assert victim.head.value == 5
+
+
+def test_pop_first_on_empty_list() -> None:
+    """Test that pop_first() returns None on empty list."""
+    victim = DoublyLinkedList(value=4)
+    victim.head = None
+    victim.tail = None
+    victim.length = 0
+    assert victim.pop_first() is None
+
+
+def test_pop_first_on_one_item_list() -> None:
+    """Test pop_first() on one item list returns node and sets head and tail to None."""
+    victim = DoublyLinkedList(value=4)
+    assert victim.pop_first().value == 4
+    assert victim.length == 0
+    assert victim.head is None
+    assert victim.tail is None
