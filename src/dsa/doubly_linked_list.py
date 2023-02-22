@@ -108,3 +108,26 @@ class DoublyLinkedList:
         if self.length == 0:
             self.tail = None
         return temp
+
+    def get(self, index: int) -> Node | None:
+        """Get the node at the given index.
+
+        Args:
+            index (int): The index of the node to get.
+
+        Returns:
+            Node | None: The node at the given index.
+        """
+        if index < 0 or index >= self.length:
+            return None
+        if index <= self.length // 2:
+            temp = self.head
+            for _ in range(index):
+                if temp is not None:
+                    temp = temp.next
+        else:
+            temp = self.tail
+            for _ in range(self.length - 1 - index):
+                if temp is not None:
+                    temp = temp.prev
+        return temp

@@ -32,6 +32,17 @@ def empty_list() -> DoublyLinkedList:
     return empty_list
 
 
+@pytest.fixture()
+def multi_item_list() -> DoublyLinkedList:
+    """Return a DoublyLinkedList with five nodes [4, 5, 6, 7, 8]."""
+    victim = DoublyLinkedList(value=4)
+    victim.append(5)
+    victim.append(6)
+    victim.append(7)
+    victim.append(8)
+    return victim
+
+
 def test_node() -> None:
     """Test Node class."""
     victim = Node(value=4)
@@ -148,3 +159,26 @@ def test_pop_first_on_one_item_list(single_item_list) -> None:
     assert victim.length == 0
     assert victim.head is None
     assert victim.tail is None
+
+
+def test_get(multi_item_list) -> None:
+    """Test that get() returns the node at the given index."""
+    victim = multi_item_list
+    assert victim.get(0).value == 4
+    assert victim.get(1).value == 5
+    assert victim.get(2).value == 6
+    assert victim.get(3).value == 7
+    assert victim.get(4).value == 8
+
+
+def test_get_on_empty_list(empty_list) -> None:
+    """Test that get() returns None on empty list."""
+    victim = empty_list
+    assert victim.get(0) is None
+
+
+@pytest.mark.parametrize("index", [-1, 5])
+def test_get_on_out_of_bounds_index(multi_item_list, index) -> None:
+    """Test that get() returns None on out of bounds index."""
+    victim = multi_item_list
+    assert victim.get(index) is None
