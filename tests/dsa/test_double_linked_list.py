@@ -182,3 +182,23 @@ def test_get_on_out_of_bounds_index(multi_item_list, index) -> None:
     """Test that get() returns None on out of bounds index."""
     victim = multi_item_list
     assert victim.get(index) is None
+
+
+@pytest.mark.parametrize("index", [-1, 5])
+def test_set_value_on_out_of_bounds_index(multi_item_list, index) -> None:
+    """Test that set_value() returns False on out of bounds index."""
+    victim = multi_item_list
+    assert not victim.set_value(index=index, value=9)
+
+
+def test_set_value(multi_item_list) -> None:
+    """Test that set_value() sets the value of the node at the given index."""
+    victim = multi_item_list
+    assert victim.set_value(index=3, value=9)
+    assert victim.get(3).value == 9
+
+
+def test_set_value_on_empty_list(empty_list) -> None:
+    """Test that set_value() returns False on empty list."""
+    victim = empty_list
+    assert not victim.set_value(index=0, value=9)

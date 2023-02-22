@@ -131,3 +131,18 @@ class DoublyLinkedList:
                 if temp is not None:
                     temp = temp.prev
         return temp
+
+    def set_value(self, index: int, value: Any) -> bool:
+        """Set the value of the node at the given index.
+
+        Args:
+            index (int): The index of the node to set.
+            value (Any): The value to set.
+
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        if node := self.get(index):
+            node.value = value
+            return True
+        return False
