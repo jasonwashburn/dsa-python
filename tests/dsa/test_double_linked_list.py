@@ -3,7 +3,33 @@
 from io import StringIO
 from unittest.mock import patch
 
+import pytest
+
 from dsa.doubly_linked_list import DoublyLinkedList, Node
+
+
+@pytest.fixture()
+def single_item_list() -> DoublyLinkedList:
+    """Return a DoublyLinkedList with one node [4]."""
+    return DoublyLinkedList(value=4)
+
+
+@pytest.fixture()
+def two_item_list() -> DoublyLinkedList:
+    """Return a DoublyLinkedList with two nodes [4, 5]."""
+    victim = DoublyLinkedList(value=4)
+    victim.append(5)
+    return victim
+
+
+@pytest.fixture()
+def empty_list() -> DoublyLinkedList:
+    """Return an empty DoublyLinkedList [None]."""
+    empty_list = DoublyLinkedList(value=4)
+    empty_list.head = None
+    empty_list.tail = None
+    empty_list.length = 0
+    return empty_list
 
 
 def test_node() -> None:
@@ -25,16 +51,15 @@ def test_doubly_linked_list() -> None:
 
 
 @patch("sys.stdout", new_callable=StringIO)
-def test_print_list(mock_stdout) -> None:
+def test_print_list(mock_stdout, single_item_list) -> None:
     """Test that print_list() prints the list to stdout."""
-    victim = DoublyLinkedList(value=4)
-    victim.print_list()
+    single_item_list.print_list()
     assert mock_stdout.getvalue() == "4\n"
 
 
-def test_append() -> None:
+def test_append(single_item_list) -> None:
     """Test that append() adds a node to the end of the list."""
-    victim = DoublyLinkedList(value=4)
+    victim = single_item_list
     assert victim.append(5)
     assert victim.tail.value == 5
     assert victim.head.next == victim.tail
@@ -42,22 +67,18 @@ def test_append() -> None:
     assert victim.length == 2
 
 
-def test_append_on_empty_list() -> None:
+def test_append_on_empty_list(empty_list) -> None:
     """Test that append() works on empty list."""
-    victim = DoublyLinkedList(value=4)
-    victim.head = None
-    victim.tail = None
-    victim.length = 0
+    victim = empty_list
     assert victim.append(5)
     assert victim.tail.value == 5
     assert victim.head == victim.tail
     assert victim.length == 1
 
 
-def test_pop() -> None:
+def test_pop(two_item_list) -> None:
     """Test that pop() removes the last node in the list."""
-    victim = DoublyLinkedList(value=4)
-    victim.append(5)
+    victim = two_item_list
     popped_node = victim.pop()
     assert popped_node.value == 5
     assert popped_node.next is None
@@ -67,18 +88,15 @@ def test_pop() -> None:
     assert victim.length == 1
 
 
-def test_pop_on_empty_list() -> None:
+def test_pop_on_empty_list(empty_list) -> None:
     """Test that pop() returns None on empty list."""
-    victim = DoublyLinkedList(value=4)
-    victim.head = None
-    victim.tail = None
-    victim.length = 0
+    victim = empty_list
     assert victim.pop() is None
 
 
-def test_pop_on_single_node_list() -> None:
+def test_pop_on_single_node_list(single_item_list) -> None:
     """Test that pop() returns the node and sets head and tail to None."""
-    victim = DoublyLinkedList(value=4)
+    victim = single_item_list
     popped_node = victim.pop()
     assert popped_node.value == 4
     assert popped_node.next is None
@@ -88,48 +106,44 @@ def test_pop_on_single_node_list() -> None:
     assert victim.length == 0
 
 
-def test_prepend() -> None:
+def test_prepend(single_item_list) -> None:
     """Test that prepend() adds a node to the beginning of the list."""
-    victim = DoublyLinkedList(value=4)
+    victim = single_item_list
     victim.prepend(5)
     assert victim.head.value == 5
     assert victim.tail.value == 4
     assert victim.length == 2
 
 
-def test_prepend_on_empty_list() -> None:
+def test_prepend_on_empty_list(empty_list) -> None:
     """Test that prepend() works on empty list."""
-    victim = DoublyLinkedList(value=4)
-    victim.head = None
-    victim.tail = None
-    victim.length = 0
+    victim = empty_list
     victim.prepend(4)
     assert victim.head.value == 4
     assert victim.tail.value == 4
     assert victim.length == 1
 
 
-def test_pop_first() -> None:
+def test_pop_first(two_item_list) -> None:
     """Test that pop_first() returns the first node in the list."""
-    victim = DoublyLinkedList(value=4)
-    victim.append(5)
+    victim = two_item_list
     assert victim.pop_first().value == 4
     assert victim.length == 1
     assert victim.head.value == 5
 
 
-def test_pop_first_on_empty_list() -> None:
+def test_pop_first_on_empty_list(empty_list) -> None:
     """Test that pop_first() returns None on empty list."""
-    victim = DoublyLinkedList(value=4)
+    victim = empty_list
     victim.head = None
     victim.tail = None
     victim.length = 0
     assert victim.pop_first() is None
 
 
-def test_pop_first_on_one_item_list() -> None:
+def test_pop_first_on_one_item_list(single_item_list) -> None:
     """Test pop_first() on one item list returns node and sets head and tail to None."""
-    victim = DoublyLinkedList(value=4)
+    victim = single_item_list
     assert victim.pop_first().value == 4
     assert victim.length == 0
     assert victim.head is None
