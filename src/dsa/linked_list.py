@@ -174,7 +174,7 @@ class LinkedList:
         self.length += 1
         return True
 
-    def remove(self, index: int) -> bool:
+    def remove(self, index: int) -> Node | None:
         """Remove the node at the given index.
 
         Args:
@@ -184,7 +184,7 @@ class LinkedList:
             bool: True if the node was removed, False otherwise.
         """
         if index < 0 or index >= self.length:
-            return False
+            return None
         if index == 0:
             return self.pop_first()
         if index == self.length - 1:
@@ -215,12 +215,3 @@ class LinkedList:
             temp = after
 
         return self
-
-
-def main():
-    """Run Main function."""
-    ...
-
-
-if __name__ == "__main__":
-    main()

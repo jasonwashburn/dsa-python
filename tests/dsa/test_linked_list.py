@@ -102,6 +102,12 @@ def test_pop_on_list_with_one_node(single_node_list) -> None:
     assert victim.length == 0
 
 
+def test_pop_returned_node_is_not_linked_to_other_nodes(multi_node_list) -> None:
+    """Test that pop() returns a node that is not linked to other nodes."""
+    victim = multi_node_list
+    assert victim.pop().next is None
+
+
 def test_prepend_adds_node_to_front_of_list(single_node_list) -> None:
     """Test that prepend() adds a node to the front of the list."""
     victim = single_node_list
@@ -197,6 +203,14 @@ def test_insert_on_empty_list(empty_list) -> None:
     assert victim.length == 1
 
 
+def test_insert_on_end_of_list(multi_node_list) -> None:
+    """Test that insert() works on the end of the list."""
+    victim = multi_node_list
+    victim.insert(index=3, value=7)
+    assert victim.get(3).value == 7
+    assert victim.length == 4
+
+
 @pytest.mark.parametrize("index", [-1, 3])
 def test_insert_on_invalid_index_returns_false(single_node_list, index: int) -> None:
     """Test that insert() returns False if the index is invalid."""
@@ -234,7 +248,13 @@ def test_remove_last_item(multi_node_list) -> None:
 def test_remove_on_empty_list_returns_false(empty_list) -> None:
     """Test that remove() returns False if the list is empty."""
     victim = empty_list
-    assert victim.remove(0) is False
+    assert victim.remove(0) is None
+
+
+def test_removed_node_is_not_linked_to_other_nodes(multi_node_list) -> None:
+    """Test that remove() returns a node that is not linked to other nodes."""
+    victim = multi_node_list
+    assert victim.remove(0).next is None
 
 
 def test_reverse(multi_node_list) -> None:
@@ -269,7 +289,7 @@ def test_linked_list_handles_len_for_empty_list(empty_list) -> None:
     assert len(victim) == 0
 
 
-def test_linked_list_haneles_len_for_one_item_list(single_node_list) -> None:
+def test_linked_list_handles_len_for_one_item_list(single_node_list) -> None:
     """Test that len() works on a list with one item."""
     victim = single_node_list
     assert len(victim) == 1
