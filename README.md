@@ -4,8 +4,8 @@ Implementing some common data structures and algorithms in python for fun using 
 
 ## Data Structures
 - [x] Linked List
-- [ ] Doubly Linked List (In Work)
-- Coming soon...
+- [x] Doubly Linked List
+- [ ] Stack (In work)
 
 ## Algorithms
 - Coming soon...
