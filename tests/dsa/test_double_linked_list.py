@@ -202,3 +202,28 @@ def test_set_value_on_empty_list(empty_list) -> None:
     """Test that set_value() returns False on empty list."""
     victim = empty_list
     assert not victim.set_value(index=0, value=9)
+
+
+def test_insert_on_empty_list(empty_list) -> None:
+    """Test that insert() works on empty list."""
+    victim = empty_list
+    empty_list.insert(index=0, value=4)
+    assert victim.head.value == 4
+    assert victim.tail.value == 4
+    assert victim.length == 1
+
+
+def test_insert(two_item_list) -> None:
+    """Test that insert() inserts a node at the given index."""
+    victim = two_item_list
+    assert victim.insert(index=1, value=9)
+    assert victim.get(1).value == 9
+    assert victim.get(2).value == 5
+    assert victim.length == 3
+
+
+@pytest.mark.parametrize("index", [-1, 6])
+def test_insert_on_out_of_bounds_index(multi_item_list, index) -> None:
+    """Test that insert() returns False on out of bounds index."""
+    victim = multi_item_list
+    assert not victim.insert(index=index, value=9)

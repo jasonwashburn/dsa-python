@@ -146,3 +146,35 @@ class DoublyLinkedList:
             node.value = value
             return True
         return False
+
+    def insert(self, index: int, value: Any) -> bool:
+        """Insert a node at the given index.
+
+        Args:
+            index (int): The index to insert the node at.
+            value (Any): The value of the node to insert.
+
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        before = None
+        after = None
+        if index < 0 or index > self.length:
+            return False
+        new_node = Node(value)
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+
+        if before := self.get(index - 1):
+            after = before.next
+        new_node.prev = before
+        new_node.next = after
+        if before and after:
+            before.next = new_node
+            after.prev = new_node
+
+        self.length += 1
+
+        return True
