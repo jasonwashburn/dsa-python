@@ -2,6 +2,22 @@
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "dsa"
+version = "0.0.1"
+description = "Data Structures and Algorithms in Python"
+dependencies = [
+    "black",
+    "isort",
+    "pytest",
+    "pytest-cov",
+    "pytest-rich",
+    "pytest-xdist",
+    "sphinx",
+    "ruff",
+    "pre-commit",
+]
+
 [tool.ruff]
 src = ["src", "tests"]
 target-version = "py311"
