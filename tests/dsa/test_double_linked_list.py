@@ -227,3 +227,25 @@ def test_insert_on_out_of_bounds_index(multi_item_list, index) -> None:
     """Test that insert() returns False on out of bounds index."""
     victim = multi_item_list
     assert not victim.insert(index=index, value=9)
+
+
+@pytest.mark.parametrize("index", [-1, 6])
+def test_remove_on_out_of_bounds_index(multi_item_list, index) -> None:
+    """Test that remove() returns False on out of bounds index."""
+    victim = multi_item_list
+    assert not victim.remove(index=index)
+
+
+def test_remove(two_item_list) -> None:
+    """Test that remove() removes the node at the given index."""
+    victim = two_item_list
+    assert victim.remove(index=1)
+    assert victim.get(0).value == 4
+    assert victim.get(1) is None
+    assert victim.length == 1
+
+
+def test_remove_on_empty_list(empty_list) -> None:
+    """Test that remove() returns False on empty list."""
+    victim = empty_list
+    assert not victim.remove(index=0)

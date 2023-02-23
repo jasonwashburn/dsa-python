@@ -178,3 +178,33 @@ class DoublyLinkedList:
         self.length += 1
 
         return True
+
+    def remove(self, index: int) -> Node | None:
+        """Remove the node at the given index.
+
+        Args:
+            index (int): The index of the node to remove.
+
+        Returns:
+            Node | None: The node that was removed.
+        """
+        before = None
+        after = None
+        if index < 0 or index >= self.length:
+            return None
+        if index == 0:
+            return self.pop_first()
+        if index == self.length - 1:
+            return self.pop()
+
+        if temp := self.get(index):
+            before = temp.prev
+            after = temp.next
+            temp.next = None
+            temp.prev = None
+
+        if before and after:
+            before.next = after
+            after.prev = before
+        self.length -= 1
+        return temp
