@@ -46,3 +46,15 @@ class Stack:
         new_node.next = self.top
         self.top = new_node
         self.height += 1
+
+    def pop(self) -> Node | None:
+        """Remove a node from the stack.
+
+        Returns:
+            Node | None: The node that was removed.
+        """
+        if temp := self.top:
+            self.top = temp.next
+            self.height -= 1
+            return temp
+        return None

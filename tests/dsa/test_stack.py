@@ -68,3 +68,25 @@ def test_push_on_empty_stack(empty_stack) -> None:
     victim.push(5)
     assert victim.top.value == 5
     assert victim.height == 1
+
+
+def test_pop(multi_item_stack) -> None:
+    """Test that pop() removes a node from the stack."""
+    victim = multi_item_stack
+    victim.pop()
+    assert victim.top.value == 5
+    assert victim.height == 2
+
+
+def test_pop_on_single_item_stack(single_item_stack) -> None:
+    """Test that pop() removes a node from the stack."""
+    victim = single_item_stack
+    victim.pop()
+    assert victim.top is None
+    assert victim.height == 0
+
+
+def test_pop_on_empty_stack(empty_stack) -> None:
+    """Test that pop() removes a node from the stack."""
+    victim = empty_stack
+    assert victim.pop() is None
