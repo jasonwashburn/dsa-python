@@ -24,6 +24,15 @@ def single_item_queue() -> Queue:
     return Queue(value=4)
 
 
+@pytest.fixture()
+def multi_item_queue() -> Queue:
+    """Create a queue with a single item."""
+    queue = Queue(value=4)
+    queue.enqueue(5)
+    queue.enqueue(6)
+    return queue
+
+
 def test_node_builds() -> None:
     """Test that a node can be built."""
     victim = Node(value=4)
@@ -45,10 +54,10 @@ def test_queue_supports_len(single_item_queue) -> None:
 
 
 @patch("sys.stdout", new_callable=StringIO)
-def test_print_queue(mock_stdout, single_item_queue) -> None:
+def test_print_queue(mock_stdout, multi_item_queue) -> None:
     """Test that print_list() prints the list to stdout."""
-    single_item_queue.print_queue()
-    assert mock_stdout.getvalue() == "4\n"
+    multi_item_queue.print_queue()
+    assert mock_stdout.getvalue() == "4\n5\n6\n"
 
 
 def test_enqueue(single_item_queue) -> None:
