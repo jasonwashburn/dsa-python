@@ -57,3 +57,19 @@ class Queue:
         self.last = new_node
         self.length += 1
         return True
+
+    def dequeue(self) -> Node | None:
+        """Remove a node from the queue.
+
+        Returns:
+            Node | None: The node that was removed, or None if the queue is empty.
+        """
+        if self.length == 0 or self.first is None or self.last is None:
+            return None
+        temp = self.first
+        self.first = self.first.next
+        self.length -= 1
+        if self.length == 0:
+            self.last = None
+        temp.next = None
+        return temp

@@ -76,3 +76,36 @@ def test_enqueue_on_empty_queue(empty_queue) -> None:
     assert victim.length == 1
     assert victim.first.value == 5
     assert victim.last.value == 5
+
+
+def test_dequeue_on_multi_item_queue(multi_item_queue) -> None:
+    """Test that dequeue() removes a node from the queue."""
+    victim = multi_item_queue
+    assert victim.dequeue().value == 4
+    assert victim.length == 2
+    assert victim.first.value == 5
+    assert victim.last.value == 6
+
+
+def test_dequeue_on_single_item_queue(single_item_queue) -> None:
+    """Test that dequeue() removes a node from the queue."""
+    victim = single_item_queue
+    assert victim.dequeue().value == 4
+    assert victim.length == 0
+    assert victim.first is None
+    assert victim.last is None
+
+
+def test_dequeue_on_empty_queue(empty_queue) -> None:
+    """Test that dequeue() removes a node from the queue."""
+    victim = empty_queue
+    assert victim.dequeue() is None
+    assert victim.length == 0
+    assert victim.first is None
+    assert victim.last is None
+
+
+def test_dequeued_node_is_unlinked(multi_item_queue) -> None:
+    """Test that dequeue() removes a node from the queue."""
+    victim = multi_item_queue
+    assert victim.dequeue().next is None
