@@ -23,3 +23,31 @@ class BinarySearchTree:
     def __init__(self) -> None:
         """Initialize a binary search tree."""
         self.root: Node | None = None
+
+    def insert(self, value: Any) -> bool:
+        """Insert a value into the binary search tree.
+
+        Args:
+            value (Any): The value to insert.
+
+        Returns:
+            bool: True if the value was inserted, False if the value was
+            already present.
+        """
+        if self.root is None:
+            self.root = Node(value)
+            return True
+        temp = self.root
+        while True:
+            if value == temp.value:
+                return False
+            if value < temp.value:
+                if temp.left is None:
+                    temp.left = Node(value)
+                    return True
+                temp = temp.left
+            elif value > temp.value:
+                if temp.right is None:
+                    temp.right = Node(value)
+                    return True
+                temp = temp.right
