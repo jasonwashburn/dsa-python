@@ -21,6 +21,7 @@ def test_insert_on_empty_tree() -> None:
     """Test that a node can be inserted into an empty tree."""
     victim = BinarySearchTree()
     victim.insert(4)
+    assert isinstance(victim.root, Node)
     assert victim.root.value == 4
     assert victim.root.left is None
     assert victim.root.right is None
@@ -32,6 +33,9 @@ def test_insert_on_non_empty_tree() -> None:
     victim.insert(4)
     victim.insert(2)
     victim.insert(6)
+    assert isinstance(victim.root, Node)
+    assert isinstance(victim.root.left, Node)
+    assert isinstance(victim.root.right, Node)
     assert victim.root.value == 4
     assert victim.root.left.value == 2
     assert victim.root.right.value == 6
