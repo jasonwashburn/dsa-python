@@ -1,5 +1,8 @@
 """Tests for the queue module."""
 
+from io import StringIO
+from unittest.mock import patch
+
 from dsa.queue import Node, Queue
 
 
@@ -22,3 +25,11 @@ def test_queue_supports_len() -> None:
     """Test that a queue can be built."""
     victim = Queue(value=4)
     assert len(victim) == 1
+
+
+@patch("sys.stdout", new_callable=StringIO)
+def test_print_queue(mock_stdout) -> None:
+    """Test that print_list() prints the list to stdout."""
+    victim = Queue(value=4)
+    victim.print_queue()
+    assert mock_stdout.getvalue() == "4\n"

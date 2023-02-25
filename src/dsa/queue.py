@@ -32,3 +32,10 @@ class Queue:
     def __len__(self) -> int:
         """Return the length of the queue."""
         return self.length
+
+    def print_queue(self) -> None:
+        """Print the queue."""
+        temp = self.first
+        while temp is not None:
+            print(temp.value)  # noqa: T201
+            temp = temp.next
