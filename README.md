@@ -25,6 +25,7 @@ Implementing some common data structures and algorithms in python for fun using 
 - [x] Stack
 - [x] Queue
 - [x] Binary Search Tree
+- [ ] Hash Table (in work)
 
 ## Algorithms
 - Coming soon...
