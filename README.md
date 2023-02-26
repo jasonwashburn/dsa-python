@@ -24,7 +24,7 @@ Implementing some common data structures and algorithms in python for fun using 
 - [x] Doubly Linked List
 - [x] Stack
 - [x] Queue
-- [ ] Binary Search Tree (in work)
+- [x] Binary Search Tree
 
 ## Algorithms
 - Coming soon...
