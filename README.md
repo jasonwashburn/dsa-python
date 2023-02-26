@@ -9,7 +9,7 @@
 
 [black badge]: https://img.shields.io/badge/code%20style-black-000000.svg
 [black project]: https://github.com/psf/black
-[github actions badge]: https://github.com/jasonwashburn/dsa-python/workflows/Tests/badge.svg
+[github actions badge]: https://github.com/jasonwashburn/dsa-python/workflows/Lint_And_Test/badge.svg
 [github actions page]: https://github.com/jasonwashburn/dsa-python/actions?workflow=Lint_And_Test
 [github page]: https://github.com/jasonwashburn/dsa-python
 [pre-commit badge]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
