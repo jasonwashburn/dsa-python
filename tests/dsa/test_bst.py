@@ -64,3 +64,58 @@ def test_insert_right() -> None:
     assert victim.insert(4)
     assert victim.insert(5)
     assert victim.insert(6)
+
+
+def test_contains_on_empty_tree() -> None:
+    """Test that contains returns false on an empty tree."""
+    victim = BinarySearchTree()
+    assert victim.contains(4) is False
+
+
+def test_contains_on_root_only() -> None:
+    """Test that contains returns true on the root only."""
+    victim = BinarySearchTree()
+    victim.insert(4)
+    assert victim.contains(4) is True
+
+
+def test_contains_on_left() -> None:
+    """Test that contains returns true on the left."""
+    victim = BinarySearchTree()
+    victim.insert(4)
+    victim.insert(2)
+    assert victim.contains(2) is True
+
+
+def test_contains_on_right() -> None:
+    """Test that contains returns true on the right."""
+    victim = BinarySearchTree()
+    victim.insert(4)
+    victim.insert(6)
+    assert victim.contains(6) is True
+
+
+def test_contains_on_missing() -> None:
+    """Test that contains returns false on a missing value."""
+    victim = BinarySearchTree()
+    victim.insert(4)
+    victim.insert(6)
+    assert victim.contains(5) is False
+
+
+def test_contains_on_deep_left() -> None:
+    """Test that contains returns true on a deep left."""
+    victim = BinarySearchTree()
+    victim.insert(4)
+    victim.insert(2)
+    victim.insert(1)
+    assert victim.contains(1) is True
+
+
+def test_contains_on_deep_right() -> None:
+    """Test that contains returns true on a deep right."""
+    victim = BinarySearchTree()
+    victim.insert(4)
+    victim.insert(6)
+    victim.insert(7)
+    assert victim.contains(7) is True

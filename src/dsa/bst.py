@@ -49,3 +49,24 @@ class BinarySearchTree:
                     temp.right = Node(value)
                     return True
                 temp = temp.right
+
+    def contains(self, value: float | int) -> bool:
+        """Check if a value is present in the binary search tree.
+
+        Args:
+            value (object): The value to check for.
+
+        Returns:
+            bool: True if the value is present, False otherwise.
+        """
+        temp = self.root
+        while temp is not None:
+            if temp.value == value:
+                return True
+            if value < temp.value:
+                temp = temp.left
+                continue
+            if value > temp.value:
+                temp = temp.right
+                continue
+        return False
