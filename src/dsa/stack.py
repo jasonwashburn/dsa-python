@@ -1,26 +1,23 @@
 """Implement a stack data structure."""
 
 
-from typing import Any
-
-
 class Node:
     """Node class for stack."""
 
-    def __init__(self, value: Any):
+    def __init__(self, value: object):
         """Initialize the node.
 
         Args:
             value (_type_): The value to initialize the node with.
         """
-        self.value: Any = value
+        self.value: object = value
         self.next: Node | None = None
 
 
 class Stack:
     """Stack class."""
 
-    def __init__(self, value: Any):
+    def __init__(self, value: object):
         """Initialize the stack.
 
         Args:
@@ -29,14 +26,14 @@ class Stack:
         self.top: Node | None = Node(value)
         self.height: int = 1
 
-    def print_stack(self):
+    def print_stack(self) -> None:
         """Print the stack to stdout."""
         current = self.top
         while current:
             print(current.value)  # noqa: T201
             current = current.next
 
-    def push(self, value):
+    def push(self, value) -> None:
         """Add a node to the stack.
 
         Args:

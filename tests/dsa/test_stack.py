@@ -41,6 +41,7 @@ def test_node_builds() -> None:
 def test_stack_builds() -> None:
     """Test that the stack builds."""
     victim = Stack(value=4)
+    assert isinstance(victim.top, Node)
     assert victim.top.value == 4
     assert victim.height == 1
 

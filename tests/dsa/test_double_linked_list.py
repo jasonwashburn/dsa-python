@@ -54,6 +54,7 @@ def test_node() -> None:
 def test_doubly_linked_list() -> None:
     """Test DoublyLinkedList class."""
     victim = DoublyLinkedList(value=4)
+    assert isinstance(victim.head, Node)
     assert victim.head.value == 4
     assert victim.head.next is None
     assert victim.head.prev is None

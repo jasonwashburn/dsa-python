@@ -1,18 +1,16 @@
 """Implements a doubly linked list."""
 
-from typing import Any
-
 
 class Node:
     """Node class for doubly linked list."""
 
-    def __init__(self, value: Any) -> None:
+    def __init__(self, value: object) -> None:
         """Initialize a new node.
 
         Args:
-            value (Any): The value of the node.
+            value (object): The value of the node.
         """
-        self.value: Any = value
+        self.value: object = value
         self.next: Node | None = None
         self.prev: Node | None = None
 
@@ -20,11 +18,11 @@ class Node:
 class DoublyLinkedList:
     """Doubly linked list class."""
 
-    def __init__(self, value: Any) -> None:
+    def __init__(self, value: object) -> None:
         """Initialize a new doubly linked list.
 
         Args:
-            value (Any): The value of the head node.
+            value (object): The value of the head node.
         """
         new_node = Node(value)
         self.head: Node | None = new_node
@@ -38,11 +36,11 @@ class DoublyLinkedList:
             print(temp.value)  # noqa: T201
             temp = temp.next
 
-    def append(self, value: Any) -> bool:
+    def append(self, value: object) -> bool:
         """Append a node to the end of the list.
 
         Args:
-            value (Any): The value of the node to append.
+            value (object): The value of the node to append.
         """
         new_node = Node(value)
         if self.length == 0 or self.head is None or self.tail is None:
@@ -76,11 +74,11 @@ class DoublyLinkedList:
         self.length -= 1
         return temp
 
-    def prepend(self, value: Any) -> bool:
+    def prepend(self, value: object) -> bool:
         """Prepend a node to the beginning of the list.
 
         Args:
-            value (Any): The value of the node to prepend.
+            value (object): The value of the node to prepend.
 
         Returns:
             bool: True if successful, False otherwise.
@@ -132,12 +130,12 @@ class DoublyLinkedList:
                     temp = temp.prev
         return temp
 
-    def set_value(self, index: int, value: Any) -> bool:
+    def set_value(self, index: int, value: object) -> bool:
         """Set the value of the node at the given index.
 
         Args:
             index (int): The index of the node to set.
-            value (Any): The value to set.
+            value (object): The value to set.
 
         Returns:
             bool: True if successful, False otherwise.
@@ -147,12 +145,12 @@ class DoublyLinkedList:
             return True
         return False
 
-    def insert(self, index: int, value: Any) -> bool:
+    def insert(self, index: int, value: object) -> bool:
         """Insert a node at the given index.
 
         Args:
             index (int): The index to insert the node at.
-            value (Any): The value of the node to insert.
+            value (object): The value of the node to insert.
 
         Returns:
             bool: True if successful, False otherwise.

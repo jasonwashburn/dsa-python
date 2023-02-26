@@ -1,28 +1,28 @@
 """Implements Linked List Data Structure."""
-from typing import Any, Self
+from typing import Self
 
 
 class Node:
     """A node in a linked list."""
 
-    def __init__(self, value: Any) -> None:
+    def __init__(self, value: object) -> None:
         """Initialize a node.
 
         Args:
-            value (Any): The value of the node.
+            value (object): The value of the node.
         """
-        self.value: Any = value
+        self.value: object = value
         self.next: Node | None = None
 
 
 class LinkedList:
     """A linked list."""
 
-    def __init__(self, value: Any) -> None:
+    def __init__(self, value: object) -> None:
         """Initialize a linked list.
 
         Args:
-            value (Any): The initial value in the linked list.
+            value (object): The initial value in the linked list.
         """
         node = Node(value=value)
         self.head: Node | None = node
@@ -40,17 +40,17 @@ class LinkedList:
             print(temp.value)  # noqa: T201
             temp = temp.next
 
-    def append(self, value: Any) -> bool:
+    def append(self, value: object) -> bool:
         """Append a value to the end of the linked list.
 
         Args:
-            value (Any): The value to append.
+            value (object): The value to append.
 
         Returns:
             bool: True if the value was appended, False otherwise.
         """
         new_node = Node(value=value)
-        if self.head is None:
+        if self.head is None or self.tail is None:
             self.head = new_node
             self.tail = new_node
         else:
@@ -65,10 +65,11 @@ class LinkedList:
         Returns:
             Node | None: The last node, or None if the list is empty.
         """
+        if self.length == 0 or self.head is None or self.tail is None:
+            return None
         temp = self.head
         pre = self.head
-        if self.length == 0:
-            return None
+
         while temp.next:
             pre = temp
             temp = temp.next
@@ -80,11 +81,11 @@ class LinkedList:
             self.tail = None
         return temp
 
-    def prepend(self, value: Any) -> bool:
+    def prepend(self, value: object) -> bool:
         """Prepend a value to the beginning of the linked list.
 
         Args:
-            value (Any): The value to prepend.
+            value (object): The value to prepend.
 
         Returns:
             bool: True if the value was prepended, False otherwise.
@@ -106,7 +107,7 @@ class LinkedList:
         Returns:
             Node | None: The first node, or None if the list is empty.
         """
-        if self.length == 0:
+        if self.length == 0 or self.head is None or self.tail is None:
             return None
         temp = self.head
         new_head = self.head.next
@@ -131,15 +132,16 @@ class LinkedList:
             return None
         temp = self.head
         for _ in range(index):
-            temp = temp.next
+            if temp:
+                temp = temp.next
         return temp
 
-    def set_value(self, index: int, value: Any) -> bool:
+    def set_value(self, index: int, value: object) -> bool:
         """Set the value of the node at the given index.
 
         Args:
             index (int): The index of the node to set.
-            value (Any): The new value of the node.
+            value (object): The new value of the node.
 
         Returns:
             bool: True if the value was set, False otherwise.
@@ -150,12 +152,12 @@ class LinkedList:
         node.value = value
         return True
 
-    def insert(self, index: int, value: Any) -> bool:
+    def insert(self, index: int, value: object) -> bool:
         """Insert a node at the given index.
 
         Args:
             index (int): The index to insert the node at.
-            value (Any): The value of the node to insert.
+            value (object): The value of the node to insert.
 
         Returns:
             bool: True if the node was inserted, False otherwise.
@@ -166,12 +168,12 @@ class LinkedList:
             return self.prepend(value=value)
         if index == self.length:
             return self.append(value=value)
-        leader = self.get(index - 1)
-        new_node = Node(value=value)
-        follower = leader.next
-        new_node.next = follower
-        leader.next = new_node
-        self.length += 1
+        if leader := self.get(index - 1):
+            new_node = Node(value=value)
+            follower = leader.next
+            new_node.next = follower
+            leader.next = new_node
+            self.length += 1
         return True
 
     def remove(self, index: int) -> Node | None:
@@ -190,10 +192,10 @@ class LinkedList:
         if index == self.length - 1:
             return self.pop()
         temp = self.get(index)
-        leader = self.get(index - 1)
-        follower = self.get(index + 1)
-        leader.next = follower
-        self.length -= 1
+        if leader := self.get(index - 1):
+            follower = self.get(index + 1)
+            leader.next = follower
+            self.length -= 1
         return temp
 
     def reverse(self) -> Self:
@@ -202,16 +204,15 @@ class LinkedList:
         Returns:
             Self: The reversed linked list.
         """
-        temp = self.head
-        self.head = self.tail
-        self.tail = temp
+        self.head, self.tail = self.tail, self.head
 
         prev = None
         temp = self.tail
         for _ in range(self.length):
-            after = temp.next
-            temp.next = prev
-            prev = temp
-            temp = after
+            if temp:
+                after = temp.next
+                temp.next = prev
+                prev = temp
+                temp = after
 
         return self

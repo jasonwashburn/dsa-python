@@ -48,8 +48,12 @@ markupsafe==2.1.2
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
+mypy==1.0.1
+    # via dsa (pyproject.toml)
 mypy-extensions==1.0.0
-    # via black
+    # via
+    #   black
+    #   mypy
 nodeenv==1.7.0
     # via pre-commit
 packaging==23.0
@@ -109,6 +113,8 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
+typing-extensions==4.5.0
+    # via mypy
 urllib3==1.26.14
     # via requests
 virtualenv==20.19.0

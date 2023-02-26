@@ -43,6 +43,7 @@ def test_node_builds() -> None:
 def test_queue_builds() -> None:
     """Test that a queue can be built."""
     victim = Queue(value=4)
+    assert isinstance(victim.first, Node)
     assert victim.first.value == 4
     assert victim.last is victim.first
     assert victim.length == 1

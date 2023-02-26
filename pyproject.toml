@@ -16,16 +16,18 @@ dependencies = [
     "sphinx",
     "ruff",
     "pre-commit",
+    "mypy",
 ]
 
 [tool.ruff]
 src = ["src", "tests"]
 target-version = "py311"
 select = ["ALL"]
-ignore = ["ANN", "INP001"]
+ignore = ["ANN001", "ANN101", "ANN204", "INP001"]
 unfixable = [
     # Don't remove `print` statements, just warn.
     "T201",
+    "ERA001"
 ]
 
 [tool.ruff.per-file-ignores]
@@ -33,3 +35,10 @@ unfixable = [
 
 [tool.ruff.pydocstyle]
 convention = "google"
+
+[tool.ruff.flake8-type-checking]
+strict = false
+
+[tool.mypy]
+python_version = "3.11"
+files = ["src", "tests"]

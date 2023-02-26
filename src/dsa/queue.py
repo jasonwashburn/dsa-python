@@ -1,29 +1,27 @@
 """Implement a queue using a linked list."""
 
-from typing import Any
-
 
 class Node:
     """A node in a queue."""
 
-    def __init__(self, value: Any):
+    def __init__(self, value: object):
         """Initialize a node.
 
         Args:
-            value (Any): The value to store in the node.
+            value (object): The value to store in the node.
         """
-        self.value: Any = value
+        self.value: object = value
         self.next: Node | None = None
 
 
 class Queue:
     """A queue."""
 
-    def __init__(self, value: Any):
+    def __init__(self, value: object):
         """Initialize a queue.
 
         Args:
-            value (Any): The value to store in the queue.
+            value (object): The value to store in the queue.
         """
         self.first: Node | None = Node(value)
         self.last: Node | None = self.first
@@ -40,11 +38,11 @@ class Queue:
             print(temp.value)  # noqa: T201
             temp = temp.next
 
-    def enqueue(self, value: Any) -> bool:
+    def enqueue(self, value: object) -> bool:
         """Add a node to the queue.
 
         Args:
-            value (Any): The value to store in the node.
+            value (object): The value to store in the node.
 
         Returns:
             bool: True if the node was added, False otherwise.
