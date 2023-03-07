@@ -75,7 +75,7 @@ pygments==2.14.0
     # via
     #   rich
     #   sphinx
-pytest==7.2.1
+pytest==7.2.2
     # via
     #   dsa (pyproject.toml)
     #   pytest-cov
