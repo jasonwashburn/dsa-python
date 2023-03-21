@@ -69,7 +69,7 @@ platformdirs==3.0.0
     #   virtualenv
 pluggy==1.0.0
     # via pytest
-pre-commit==3.1.0
+pre-commit==3.2.0
     # via dsa (pyproject.toml)
 pygments==2.14.0
     # via
