@@ -30,7 +30,7 @@ execnet==1.9.0
     # via pytest-xdist
 filelock==3.12.0
     # via virtualenv
-identify==2.5.22
+identify==2.5.24
     # via pre-commit
 idna==3.4
     # via requests
