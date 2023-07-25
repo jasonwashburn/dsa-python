@@ -12,7 +12,7 @@ babel==2.12.1
     # via sphinx
 black==23.3.0
     # via dsa (pyproject.toml)
-certifi==2022.12.7
+certifi==2023.7.22
     # via requests
 cfgv==3.3.1
     # via pre-commit
