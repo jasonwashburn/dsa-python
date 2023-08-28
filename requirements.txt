@@ -97,7 +97,7 @@ ruff==0.0.272
     # via dsa (pyproject.toml)
 snowballstemmer==2.2.0
     # via sphinx
-sphinx==6.1.3
+sphinx==7.2.4
     # via dsa (pyproject.toml)
 sphinxcontrib-applehelp==1.0.4
     # via sphinx
