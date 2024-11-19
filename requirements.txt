@@ -10,7 +10,7 @@ attrs==22.2.0
     # via pytest
 babel==2.12.1
     # via sphinx
-black==23.3.0
+black==24.3.0
     # via dsa (pyproject.toml)
 certifi==2022.12.7
     # via requests
