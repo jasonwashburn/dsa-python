@@ -81,7 +81,7 @@ pytest==7.2.2
     #   pytest-cov
     #   pytest-rich
     #   pytest-xdist
-pytest-cov==4.0.0
+pytest-cov==6.0.0
     # via dsa (pyproject.toml)
 pytest-rich==0.1.1
     # via dsa (pyproject.toml)
