@@ -113,7 +113,7 @@ sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
 typing-extensions==4.5.0
     # via mypy
-urllib3==2.0.3
+urllib3==2.3.0
     # via requests
 virtualenv==20.21.0
     # via pre-commit
